@@ -1,4 +1,4 @@
-﻿/* * * * *
+/* * * * *
  * Cal3D importer
  * -------------
  * 
@@ -344,6 +344,7 @@ namespace B83.MeshTools.Cal3D
             if (format != 700)
                 Debug.LogWarning("CRF file format is " + format + " while 700 was expected");
             var mat = new Cal3DMaterial();
+            mat.textureNames = new List<string>();
             mat.name = aName;
 
             mat.ambientColor = ReadColor32(aReader);
