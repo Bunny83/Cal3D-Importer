@@ -353,7 +353,7 @@ namespace B83.MeshTools.Cal3D
             mat.shininess = aReader.ReadSingle();
             int textureCount = aReader.ReadInt32();
             for(int i = 0; i < textureCount; i++)
-                mat.textureNames.Add(ReadLengthString(aReader).Replace("\0",""));
+                mat.textureNames.Add(ReadLengthString(aReader));
             return mat;
         }
         public static Cal3DMaterial ReadMaterialXML(Stream aStream, string aName)
@@ -496,7 +496,11 @@ namespace B83.MeshTools.Cal3D
             int l = aReader.ReadInt32();
             StringBuilder sb = new StringBuilder(l);
             for (int i = 0; i < l; i++)
-                sb.Append((char)aReader.ReadByte());
+            {
+                char c = (char)aReader.ReadByte();
+                if (c != '\0')
+                    sb.Append(c);
+            }
             return sb.ToString();
         }
         private static Color32 ReadColor32(BinaryReader aReader)
