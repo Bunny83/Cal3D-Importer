@@ -353,7 +353,7 @@ namespace B83.MeshTools.Cal3D
             mat.shininess = aReader.ReadSingle();
             int textureCount = aReader.ReadInt32();
             for(int i = 0; i < textureCount; i++)
-                mat.textureNames.Add(ReadLengthString(aReader));
+                mat.textureNames.Add(ReadLengthString(aReader).Replace("\0",""));
             return mat;
         }
         public static Cal3DMaterial ReadMaterialXML(Stream aStream, string aName)
